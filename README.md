@@ -42,7 +42,13 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+I picked a public sports subreddit focused on game highlights and discussion, where there is a lot of variation in how people post. 
 
+The more substantial posts were the ones that tied a claim to a specific article, report, or factual update, while weaker posts were mostly reaction or opinion. 
+
+I also noticed a distinction between short clip-based posts that just showed a moment from a game and longer posts that explained the play, the context, or why it mattered. 
+
+Finally, some posts used a clip or game moment with a caption to judge a player or a sequence, while others were just general hype or a blunt reaction.”
 
 ---
 
@@ -56,20 +62,20 @@
 
 ### `label_one`
 
-**Definition:**
+**Definition:** Analysis
 
-**Example 1:**
->
+**Example 1:** 
+>WNBA Finals Games 3 and 4 move to State Farm Arena in Atlanta to accommodate more fans <https://www.reddit.com/r/sports/comments/1x5pvqf/wnba_finals_games_3_and_4_move_to_state_farm/>
 
 **Example 2:**
 >
 
 ### `label_two`
 
-**Definition:**
+**Definition:** Hot take
 
 **Example 1:**
->
+> Dönermann with one of the greatest saves of all time. <https://www.reddit.com/r/sports/comments/1wm0ms8/d%C3%B6nermann_with_one_of_the_greatest_saves_of_all/>
 
 **Example 2:**
 >
@@ -91,7 +97,7 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:**subreddit sports
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
