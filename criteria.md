@@ -52,62 +52,52 @@ whether you hit them:
 ---
 
 ## 1.
-
+At least 72.5% overall accuracy on the test set.
 <!-- Your criterion. It must name a number. -->
 
 
-
 **Why this target:**
+I treated the task as moderately difficult: the labels are distinct enough to be learnable, but the boundary between hot_take and reaction is fuzzy enough that a perfect score is unrealistic. A target of 72.5% overall accuracy is therefore a realistic threshold for a useful classifier while still requiring meaningful performance above a naive baseline.
 
 
-
----
-
+ 
 ## 2.
 
 <!-- Your criterion. -->
-
-
+Each label should reach at least 0.50 F1 on the held-out set, and the strongest label should not outperform the weakest by more than 0.25 points.
 
 **Why this target:**
-
-
+My dataset is heavily skewed toward `analysis`, and the smallest labels are only a handful of posts in the test split. A threshold of 0.50 F1 still requires the model to learn the minority classes, but it is realistic given that `hot_take` and `reaction` are harder and smaller than the majority class.
 
 ---
 
 ## 3.
 
 <!-- Your criterion. -->
-
-
+No label should make up less than 5% of the data unless it is intentionally rare, and the model should not rely on majority-label guessing.
 
 **Why this target:**
-
-
+The final dataset is about 88% `analysis`, so a model that simply predicts `analysis` every time would look strong on raw accuracy but fail the taxonomy. Keeping the minority classes above 5% and requiring non-majority performance forces the classifier to actually learn the thin labels instead of defaulting to the majority class.
 
 ---
 
 ## 4.
 
 <!-- Your criterion. -->
-
-
+Two labelers should agree on at least 75% of posts, or the taxonomy needs revision.
 
 **Why this target:**
-
-
+The hardest boundary in this project is between `reaction` and `hot_take`, and that boundary is exactly where disagreement is most likely. A target of 75% agreement is high enough that the definitions are usable in practice, but still realistic for a taxonomy that contains fuzzy emotional language and opinion-heavy sports posts.
 
 ---
 
 ## 5.
 
 <!-- Your criterion. -->
-
-
+Predictions above 80% confidence should be correct at least 75% of the time, and uncertain cases below 60% confidence should be flagged or excluded.
 
 **Why this target:**
-
-
+In a small and imbalanced dataset, confidence is a useful safety check. If the model is very confident but wrong, it is overfitting or misreading the boundary between classes; forcing the system to flag uncertain cases makes the classifier safer and more honest than a raw one-size-fits-all prediction.
 
 ---
 
