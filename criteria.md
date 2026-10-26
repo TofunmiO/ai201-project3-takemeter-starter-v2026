@@ -77,7 +77,7 @@ My dataset is heavily skewed toward `analysis`, and the smallest labels are only
 No label should make up less than 5% of the data unless it is intentionally rare, and the model should not rely on majority-label guessing.
 
 **Why this target:**
-The final dataset is about 88% `analysis`, so a model that simply predicts `analysis` every time would look strong on raw accuracy but fail the taxonomy. Keeping the minority classes above 5% and requiring non-majority performance forces the classifier to actually learn the thin labels instead of defaulting to the majority class.
+The final dataset is about 67% `analysis`, with `reaction` at 25% and `hot_take` at 9%, so no label exceeds the 70% cap and the model still has to learn the minority classes instead of defaulting to the majority class.
 
 ---
 

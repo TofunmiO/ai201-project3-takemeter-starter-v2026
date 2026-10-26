@@ -107,15 +107,15 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 
 **Where the posts came from:** r/sports
 
-**How I labelled them:** I started with a cold pass on the first 20 posts, then used a quick AI pre-label pass on the remaining posts and corrected each row by hand before locking the dataset.
+**How I labelled them:** I started with a cold pass on the first 20 posts, then used a quick AI pre-label pass on the remaining posts and corrected each row by hand before locking the dataset. The first 20 are marked `cold`; the remaining 200 are marked `pre-labelled, corrected`.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---:|---:|
-| `analysis` | 194 | 88.2% |
-| `hot_take` | 12 | 5.5% |
-| `reaction` | 14 | 6.4% |
+| `analysis` | 147 | 66.8% |
+| `hot_take` | 19 | 8.6% |
+| `reaction` | 54 | 24.5% |
 | **Total** | **220** | **100%** |
 
 **Three hard cases**
@@ -132,14 +132,14 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 >
 > *Could have been:* `reaction` or `analysis`
 >
-> *I chose `reaction`, because:* the post begins with a reaction and is centere around a feeling
+> *I chose `reaction`, because:* the post starts from immediate frustration and the emotional tone is the main point, even though it is framed as a question.
 
 **3.**
 > *The post:* "LIV Golf CEO says tour will continue, 'wouldn't bet against us'"
 >
 > *Could have been:* `hot_take` or `analysis`
 >
-> *I chose `hot take`, because:* it reads more like an  an unsupported opinion than an informational claim.
+> *I chose `hot_take`, because:* it is a confident unsupported judgment wrapped in a business quote, not a fact-backed explanation.
 
 ---
 
