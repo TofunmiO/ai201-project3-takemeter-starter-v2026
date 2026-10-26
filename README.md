@@ -92,9 +92,9 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 
 **Which two labels:** `hot_take` and `reaction`
 
-**The decision rule I used every time:** If the post is mainly an immediate emotional burst—shock, anger, excitement, or disbelief—it is `reaction`. If the post is mainly a confident judgment with no evidence or supporting reason, it is `hot_take`. A fact-backed claim with an argument stays in `analysis`.
+**The decision rule I used every time:** If the post is mainly an immediate emotional burst—shock, anger, excitement, or disbelief—it is `reaction`. If the post is mainly a confident judgment with no evidence or supporting reason, even if there is a clip attached, it is `hot_take`. A fact-backed claim with an argument stays in `analysis`.
 
-**Borderline example:** This is why I'm no longer a Raiders fan... Also, the scariest picture in the world <https://www.reddit.com/r/sports/comments/jnu8d/this_is_why_im_no_longer_a_raiders_fan_also_the/> sits right on the edge: it contains a judgment, but the post is driven by the emotional reaction and shock, so I kept it in `reaction`.
+**Borderline example:** "Tiger Woods' unbelievable birdie from the bunker on 18 (GIF)" <https://www.reddit.com/r/sports/comments/wvwiz/tiger_woods_unbelievable_birdie_from_the_bunker/> sits right on the edge of reaction and hot take: there is a clip and a strong reaction, but the main point is the immediate emotion and excitement, so I kept it in `reaction`.
 
 **AI stress test:** I tested the definitions by asking an AI model to write eight borderline posts near the `hot_take`/`reaction` boundary. The outputs were cleanly classifiable once the rule was explicit: feeling-first posts stayed in `reaction`, while unsupported but confident judgments stayed in `hot_take`, and fact-backed arguments stayed in `analysis`.
 
@@ -105,45 +105,41 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**subreddit sports
+**Where the posts came from:** r/sports
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** I started with a cold pass on the first 20 posts, then used a quick AI pre-label pass on the remaining posts and corrected each row by hand before locking the dataset.
 
 **Counts per label:**
 
 | Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+|---|---:|---:|
+| `analysis` | 194 | 88.2% |
+| `hot_take` | 12 | 5.5% |
+| `reaction` | 14 | 6.4% |
+| **Total** | **220** | **100%** |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* "Premier League football shirts made by workers on £1 an hour"
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `analysis`
 >
-> *I chose, because:*
+> *I chose `analysis`, because:* it is framed as a labor-reporting claim with a concrete fact about wage conditions, even though the title is sharp and opinionated.
 
 **2.**
-> *The post:*
+> *The post:* "Seriously - why do fans toss their drinks like this at soccer games?"
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `analysis`
 >
-> *I chose, because:*
+> *I chose `reaction`, because:* the post begins with a reaction and is centere around a feeling
 
 **3.**
-> *The post:*
+> *The post:* "LIV Golf CEO says tour will continue, 'wouldn't bet against us'"
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `analysis`
 >
-> *I chose, because:*
+> *I chose `hot take`, because:* it reads more like an  an unsupported opinion than an informational claim.
 
 ---
 
