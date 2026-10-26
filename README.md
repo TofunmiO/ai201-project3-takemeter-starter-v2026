@@ -147,15 +147,13 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate `2e-5`, batch size `16`, seed `42`.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** I used the notebook defaults from the starter setup rather than tuning the model aggressively. The small dataset and the strong class imbalance made it more important to keep a stable, low-risk setup than to overfit to one particular seed. I also kept the split stratified and locked the test set before evaluation so the results were comparable and not contaminated by leakage.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Split sizes:** The dataset was split at 70/15/15, stratified by label. The final held-out test split contained 33 posts: `analysis` = 22, `hot_take` = 3, and `reaction` = 8. The `hot_take` count is tiny, so its F1 is noisy across seeds and needs a looser expectation than the majority class.
 
 
 
@@ -172,17 +170,17 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked an AI model to generate and sort borderline sports posts around the `hot_take` / `reaction` boundary, and to explain why a post belonged in each label.
+- *What came back:* It produced plausible examples and a quick rule-of-thumb, but it also blurred the boundary by treating some emotional reactions as unsupported judgments.
+- *What I changed:* I tightened the rule so that `reaction` is for feeling-first posts and `hot_take` is for confident unsupported judgment. I then used that rule to recheck the ambiguous examples in the dataset and in the model-generated stress-test cases.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked the model to pre-label the remaining posts in the dataset and flag likely boundary cases before I manually reviewed them.
+- *What came back:* It produced a fast draft set of labels, but several posts were mislabeled as `analysis` simply because they sounded like news headlines or had a quote attached.
+- *What I changed:* I read and corrected every single row in that batch by hand. The final labels are my corrected labels, and the notes record the workflow: the first 20 were `cold`, and the remaining 200 were `pre-labelled, corrected`.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** I used AI as a pre-labeling aid for the remaining batch of posts, then reviewed and corrected every label manually before finalizing the dataset. The final CSV is the corrected version, not the raw model output.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
