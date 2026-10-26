@@ -42,13 +42,11 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-I picked a public sports subreddit focused on game highlights and discussion, where there is a lot of variation in how people post. 
+I picked a public sports subreddit where people post game updates, clips, player reactions, and quick takes about major events. The dataset includes both substantive discussion and much weaker posts that are just emotional reactions or unsupported opinions.
 
-The more substantial posts were the ones that tied a claim to a specific article, report, or factual update, while weaker posts were mostly reaction or opinion. 
+The posts I wanted the model to learn were the ones that argued from a fact or explained why a result mattered, rather than simply sharing a headline, sport news/summary or a reaction. I also noticed a split between short clip posts and longer posts that offered context, interpretation, or a reasoned claim.
 
-I also noticed a distinction between short clip-based posts that just showed a moment from a game and longer posts that explained the play, the context, or why it mattered. 
-
-Finally, some posts used a clip or game moment with a caption to judge a player or a sequence, while others were just general hype or a blunt reaction.”
+Finally, I wanted the classifier to separate fact-backed judgment from raw feeling: a post that points to a stat, quote, or reported development is different from one that is mainly shock, frustration, or hype.
 
 ---
 
@@ -60,35 +58,45 @@ Finally, some posts used a clip or game moment with a caption to judge a player 
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `analysis`
 
-**Definition:** Analysis
+**Definition:** A post that makes a claim and supports it with a specific, checkable fact such as a stat, date, quote, or concrete game detail.
 
-**Example 1:** 
->WNBA Finals Games 3 and 4 move to State Farm Arena in Atlanta to accommodate more fans <https://www.reddit.com/r/sports/comments/1x5pvqf/wnba_finals_games_3_and_4_move_to_state_farm/>
+**Example 1:**
+> This is why NHL goalies are covered in protective gear. <https://www.reddit.com/r/sports/comments/427uvb/this_is_why_nhl_goalies_are_covered_in_protective/>
 
 **Example 2:**
->
+> This is why hockey teams never wear white pants..... <https://www.reddit.com/r/sports/comments/3vl9ny/this_is_why_hockey_teams_never_wear_white_pants/>
 
-### `label_two`
+### `hot_take`
 
-**Definition:** Hot take
+**Definition:** A confident claim that sounds like a judgment but offers no evidence, no supporting fact, and no argument beyond the opinion itself.
 
 **Example 1:**
 > Dönermann with one of the greatest saves of all time. <https://www.reddit.com/r/sports/comments/1wm0ms8/d%C3%B6nermann_with_one_of_the_greatest_saves_of_all/>
 
 **Example 2:**
->
+> Dele Alli is overrated. <https://www.reddit.com/r/sports/comments/6hf87w/dele_alli_is_overrated/>
+
+### `reaction`
+
+**Definition:** An immediate emotional response to something that just happened—shock, frustration, excitement, or disbelief—where the main point is the feeling, not a fact-backed explanation or argument.
+
+**Example 1:**
+> This high school kid's athleticism is unbelievable <https://www.reddit.com/r/sports/comments/5brk1l/this_high_school_kids_athleticism_is_unbelievable/>
+
+**Example 2:**
+> Tiger Woods' unbelievable birdie from the bunker on 18 (GIF) <https://www.reddit.com/r/sports/comments/wvwiz/tiger_woods_unbelievable_birdie_from_the_bunker/>
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `hot_take` and `reaction`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule I used every time:** If the post is mainly an immediate emotional burst—shock, anger, excitement, or disbelief—it is `reaction`. If the post is mainly a confident judgment with no evidence or supporting reason, it is `hot_take`. A fact-backed claim with an argument stays in `analysis`.
 
+**Borderline example:** This is why I'm no longer a Raiders fan... Also, the scariest picture in the world <https://www.reddit.com/r/sports/comments/jnu8d/this_is_why_im_no_longer_a_raiders_fan_also_the/> sits right on the edge: it contains a judgment, but the post is driven by the emotional reaction and shock, so I kept it in `reaction`.
 
+**AI stress test:** I tested the definitions by asking an AI model to write eight borderline posts near the `hot_take`/`reaction` boundary. The outputs were cleanly classifiable once the rule was explicit: feeling-first posts stayed in `reaction`, while unsupported but confident judgments stayed in `hot_take`, and fact-backed arguments stayed in `analysis`.
 
 ---
 
