@@ -327,6 +327,33 @@ changes by seed; 28/30 (93%) exceeds the 75% target.
   evidence does not establish the high-confidence target, and the low-
   confidence safeguard was not met.
 
+### Improvement for the after run
+
+I reviewed the `analysis` vs. `hot_take` boundary and changed one row in
+`labels.csv`: “Soccer now tops hockey for young Canadians” changed from
+`analysis` to `hot_take` because the post states a confident comparison but
+does not provide a supporting fact. No other labels or training settings were
+changed. I set Section 6 to `RUN_LABEL = "after"` and reran all three seeds.
+
+## Run Log — After
+
+| Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
+|---|---|---|---|---|---|
+| 1. Overall accuracy | At least 0.725 | 0.667 | 0.667 | 0.667 | MISSED |
+| 2. Per-label F1 and balance | Every label >= 0.500 F1; strongest–weakest gap <= 0.250 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | MISSED |
+| 3. Class balance / majority guessing | Each label >= 5% of data; model does not guess only the majority label | Dataset: analysis 66.4%, hot_take 9.1%, reaction 24.5%; predicted only analysis | Same dataset; predicted only analysis | Same dataset; predicted only analysis | MISSED: model guessed only analysis |
+| 4. Labeler agreement | At least 75% agreement | 28/30* | 28/30* | 28/30* | MET |
+| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Most-confident-third accuracy 0.818; no threshold flags recorded | Most-confident-third accuracy 0.636; no threshold flags recorded | Most-confident-third accuracy 0.727; no threshold flags recorded | MISSED: no low-confidence flag/exclusion; exact thresholds not measured |
+
+*The agreement exercise is one separate staff-labeling check, not a measure
+that changes with the model seed; the same result is shown for each seed.
+
+The relabeling did **not** improve the measured model scores: accuracy remained
+0.667, macro F1 0.267, and per-label F1 stayed at 0.800 for `analysis` and
+0.000 for both `hot_take` and `reaction` in all three seeds. The model still
+predicted only `analysis`. This one-row relabel was a controlled, documented
+test of the boundary, but it was not enough to change the observed results.
+
 
 ---
 
