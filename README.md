@@ -306,7 +306,7 @@ whether inconsistent labeling contributed to this pattern.
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 28 / 30 = 93%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -329,24 +329,28 @@ whether inconsistent labeling contributed to this pattern.
      what you did across your own 200. -->
 
 **1.**
-> *The post:*
+> *The post:* “Three of us ran the same session on the same day, different shoes, within 10 seconds of each other over 5 miles. I'm not saying shoes do nothing, but whatever they do was smaller than the noise between three people.”
 >
-> *Staff said / I said:*
+> *Staff said / I said:* `analysis` / `hot_take`
 >
-> *My call, and why:*
+> *My call, and why:* Staff is right: the post uses a statistical comparison to support its claim that the shoe effect was smaller than the variation between runners.
 >
-> *Which pile:*
+> *Which pile:* (a) The rule covered the fact-backed comparison; I applied it loosely.
 
 **2.**
-> *The post:*
+> *The post:* “Four minutes off. FOUR. I've been chasing that time for two years and I'm sat on the kerb outside the finish just grinning at nothing.”
 >
-> *Staff said / I said:*
+> *Staff said / I said:* `reaction` / `hot_take`
 >
-> *My call, and why:*
+> *My call, and why:* Staff is right: the post describes what happened to the writer and their emotional response, rather than making a general claim about the world.
 >
-> *Which pile:*
+> *Which pile:* (a) The reaction rule covered it; I applied it loosely.
 
 **What the pattern in my disagreements tells me:**
+Both disagreements were covered by the written rules, and I applied those rules
+loosely. In one case I overlooked that the comparison statistics supported the
+claim; in the other, I treated a personal emotional response as a general
+opinion.
 
 
 
