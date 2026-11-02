@@ -343,16 +343,18 @@ changed. I set Section 6 to `RUN_LABEL = "after"` and reran all three seeds.
 | 2. Per-label F1 and balance | Every label >= 0.500 F1; strongest–weakest gap <= 0.250 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | MISSED |
 | 3. Class balance / majority guessing | Each label >= 5% of data; model does not guess only the majority label | Dataset: analysis 66.4%, hot_take 9.1%, reaction 24.5%; predicted only analysis | Same dataset; predicted only analysis | Same dataset; predicted only analysis | MISSED: model guessed only analysis |
 | 4. Labeler agreement | At least 75% agreement | 28/30* | 28/30* | 28/30* | MET |
-| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Most-confident-third accuracy 0.818; no threshold flags recorded | Most-confident-third accuracy 0.636; no threshold flags recorded | Most-confident-third accuracy 0.727; no threshold flags recorded | MISSED: no low-confidence flag/exclusion; exact thresholds not measured |
+| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Most-confident-third accuracy 0.727; no threshold flags recorded | Most-confident-third accuracy 0.909; no threshold flags recorded | Most-confident-third accuracy 0.818; no threshold flags recorded | MISSED: no low-confidence flag/exclusion; exact thresholds not measured |
 
 *The agreement exercise is one separate staff-labeling check, not a measure
 that changes with the model seed; the same result is shown for each seed.
 
-The relabeling did **not** improve the measured model scores: accuracy remained
-0.667, macro F1 0.267, and per-label F1 stayed at 0.800 for `analysis` and
-0.000 for both `hot_take` and `reaction` in all three seeds. The model still
-predicted only `analysis`. This one-row relabel was a controlled, documented
-test of the boundary, but it was not enough to change the observed results.
+The relabeling did **not** improve accuracy or F1: accuracy remained 0.667,
+macro F1 0.267, and per-label F1 stayed at 0.800 for `analysis` and 0.000 for
+both `hot_take` and `reaction` in all three seeds. The model still predicted
+only `analysis`. The updated confidence-by-third results were 0.727, 0.909,
+and 0.818 for the most-confident third (seeds 42, 7, and 2024). The one-row
+relabel was a controlled, documented test of the boundary, but it was not
+enough to change the accuracy or F1 results.
 
 
 ---
