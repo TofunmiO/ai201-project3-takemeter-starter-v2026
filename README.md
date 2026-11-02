@@ -335,6 +335,11 @@ changes by seed; 28/30 (93%) exceeds the 75% target.
 
 ### Improvement for the after run
 
+This improvement follows from the Criterion 2 diagnosis: the model had zero
+`hot_take` F1, and Unit 5 feedback had flagged `analysis` labels that did not
+meet my fact-backed rule. I tested that boundary by changing one unsupported
+confident claim from `analysis` to `hot_take`.
+
 I reviewed the `analysis` vs. `hot_take` boundary and changed one row in
 `labels.csv`: “Soccer now tops hockey for young Canadians” changed from
 `analysis` to `hot_take` because the post states a confident comparison but
