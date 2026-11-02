@@ -196,19 +196,24 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.424 | 0.667 | +0.242 |
+| Macro F1 | 0.283 | 0.267 | -0.016 |
+| F1 — `analysis` | 0.541 | 0.800 | +0.259 |
+| F1 — `hot_take` | 0.000 | 0.000 | +0.000 |
+| F1 — `reaction` | 0.308 | 0.000 | -0.308 |
+
+**Definitions check:** With the full definitions, baseline accuracy was 0.424;
+with bare label names, it was 0.152. The definitions improved accuracy by
+0.272 (27.2 percentage points) on the same 33 held-out posts.
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
-
+I think my trained model will do better at finding hot_take and reaction posts than the baseline.
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
-
+The trained model improved overall accuracy from 0.424 to 0.667 and analysis F1 from 0.541 to 0.800, tied on hot_take at 0.000, and performed worse on reaction (0.000 vs. 0.308). So training improved some measures but did not improve every label.
 
 
 ---

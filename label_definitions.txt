@@ -5,6 +5,7 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+
+analysis: A post that makes a claim and supports it with a specific, checkable fact such as a stat, date, quote, or concrete game detail.
+hot_take: A confident claim that sounds like a judgment but offers no evidence, no supporting fact, and no argument beyond the opinion itself.
+reaction: An immediate emotional response to something that just happened—shock, frustration, excitement, or disbelief—where the main point is the feeling, not a fact-backed explanation or argument.

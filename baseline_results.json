@@ -1,0 +1,199 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 33,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 33,
+    "accuracy": 0.42424242424242425,
+    "f1_macro": 0.2827442827442827,
+    "per_label": {
+      "analysis": {
+        "precision": 0.6666666666666666,
+        "recall": 0.45454545454545453,
+        "f1": 0.5405405405405405,
+        "support": 22
+      },
+      "hot_take": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "reaction": {
+        "precision": 0.2222222222222222,
+        "recall": 0.5,
+        "f1": 0.30769230769230765,
+        "support": 8
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Crocodile-inhabited river approved as Brisbane 2032 Olympic rowing venue",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Gul Zamani with a wheel kick KO in Pakistani MMA",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Cardinals manager Oli Marmol argued with umpire Doug Eddings before being ejected after Eddings told rookie pitcher Hancel Rincon to fix his hat in the middle of his MLB debut. There is no specific rule that dictates hat orientation.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Neyland Stadium Hits RECORD 130.3 Decibels On Third Saturday In October",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Tyson Fury confirms boxing future and announces return from retirement",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Australia humiliated as Bangladesh make history with crushing Test cricket victory",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "AFL \u2192 NFL \u2192 AFL (MCG timelapse)",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Rays clinch ALCS with Game 6 win, to face Brewers in World Series",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "'It's all basketball': LaMelo Ball says no rift with Bam, glad he's OK",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Justin Verlander's daughter gets her dad in his last ever MLB start",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Tennis player Stefan Mili\u0107evi\u0107 banned 24 years for match-fixing",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Maiara Niehues top-corner game winner from outside the penalty box | Washington Spirit 0-[1] Angel City 89'",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "USMNT\u2019s World Cup Exit Scores Historic Ratings, Most-Watched Soccer Telecast in U.S. History (30M Viewers)",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "World Cup trophy awarded to Spain by Trump and Infantino",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "This year's Calcio Storico Fiorentino. It's a cross between rugby, MMA and a prison riot (match starts at 7:30 into the video).",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Trevor Megill strikes out Jonny DeLuca as the Brewers WIN Game 1 of the World Series",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Canadian boxing legend George Chuvalo dead at 89",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Former White Sox pitching coach Don Cooper, who led a World Series-winning rotation, dies at age 70",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "U.S. to host inaugural 2028 Women's Club World Cup",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The rhythm of football, the music of football, the music of Messi. (Football Cycles I)",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Doctors fear risk of further Jayden Daniels elbow injury",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "\"I'm proud of my heritage\" Meet Britain's youngest F1 driver ever: 18-year-old Arvid Lindblad set for 2026 debut (BBC)",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "CBC will no longer air NHL games, ending Hockey Night in Canada\u2019s 75-year run on the network",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Arsenal nearing agreement for Bruno Guimaraes transfer from Newcastle",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "MLB legend Tommy John dies at 83 after writing emotional goodbye letter",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Golden Knights to play Hurricanes in Stanley Cup Final | NHL.com",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "College Football Playoff nears agreement on 24-team expansion that could end title games",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Hellebuyck traded to Devils by Jets for Mercer, Daws, Bjugstad, picks",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Seahawks' Jaxon Smith-Njigba won the Offensive Player of the Year award, but the NFL sent him a misspelled trophy labeling him as the Defensive Player of the Year",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "'He acted in a way which conflicted with our values': Australian cycling defector Matthew Richardson slammed, but avoids two-year ban",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "The 24 Hour Solex Race in Heeswijk-Dinther, Netherlands",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Chelsea fined \u00a310.75m and given suspended transfer ban over historical rule-breaking",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "In 2015, the Milwaukee Brewers sold \u201cTimeless Tickets\u201d to fans that would grant access to any Brewers game of their choice for $1,000. The team is honoring the tickets, and fans who waited are saving thousands of dollars.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    }
+  ]
+}
