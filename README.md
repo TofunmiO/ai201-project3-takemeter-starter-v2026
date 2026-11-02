@@ -225,29 +225,48 @@ The trained model improved overall accuracy from 0.424 to 0.667 and analysis F1 
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | At least 0.725 | 0.667 | 0.667 | 0.667 | MISSED |
+| 2. Per-label F1 and balance | Every label >= 0.500 F1; strongest–weakest gap <= 0.250 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | MISSED |
+| 3. Class balance / majority guessing | Each label >= 5% of data; model does not guess only the majority label | Dataset: analysis 66.8%, hot_take 8.6%, reaction 24.5%; predicted only analysis | Same dataset; predicted only analysis | Same dataset; predicted only analysis | MISSED: model guessed only analysis |
+| 4. Labeler agreement | At least 75% agreement | Not measured in this model run | Not measured in this model run | Not measured in this model run | Pending agreement report |
+| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Thresholds/flags not recorded; most-sure third accuracy 0.818 | Thresholds/flags not recorded; most-sure third accuracy 0.636 | Thresholds/flags not recorded; most-sure third accuracy 0.727 | Not established by these summaries |
+
+### Three-seed spread (Section 6)
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.667 | 0.667 | 0.667 | 0.000 |
+| Macro F1 | 0.267 | 0.267 | 0.267 | 0.000 |
+| F1 — `analysis` | 0.800 | 0.800 | 0.800 | 0.000 |
+| F1 — `hot_take` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `reaction` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+Accuracy moved 0.000 across seeds. Stable enough to trust. The stored
+confidence summary reports accuracy for the most- and least-confident thirds,
+not the exact >80% and <60% thresholds in criterion 5; those thresholds still
+need to be measured.
+
+**Device:** Apple Silicon GPU (MPS), PyTorch 2.14.1.
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | analysis | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 22 | 0 | 0 |
+| **hot_take** | 3 | 0 | 0 |
+| **reaction** | 8 | 0 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
-
-
+The largest confusion was 8 real `reaction` posts predicted as `analysis`,
+while 0 real `analysis` posts were predicted as `reaction`; the model leaned
+toward `analysis` on this pair. The agreement report can help investigate
+whether inconsistent labeling contributed to this pattern.
 
 ---
 
