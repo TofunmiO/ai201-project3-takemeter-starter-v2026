@@ -228,8 +228,8 @@ The trained model improved overall accuracy from 0.424 to 0.667 and analysis F1 
 | 1. Overall accuracy | At least 0.725 | 0.667 | 0.667 | 0.667 | MISSED |
 | 2. Per-label F1 and balance | Every label >= 0.500 F1; strongest–weakest gap <= 0.250 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | analysis 0.800; hot_take 0.000; reaction 0.000 | MISSED |
 | 3. Class balance / majority guessing | Each label >= 5% of data; model does not guess only the majority label | Dataset: analysis 66.8%, hot_take 8.6%, reaction 24.5%; predicted only analysis | Same dataset; predicted only analysis | Same dataset; predicted only analysis | MISSED: model guessed only analysis |
-| 4. Labeler agreement | At least 75% agreement | Not measured in this model run | Not measured in this model run | Not measured in this model run | Pending agreement report |
-| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Thresholds/flags not recorded; most-sure third accuracy 0.818 | Thresholds/flags not recorded; most-sure third accuracy 0.636 | Thresholds/flags not recorded; most-sure third accuracy 0.727 | Not established by these summaries |
+| 4. Labeler agreement | At least 75% agreement | 28/30 (single check) | N/A | N/A | MET |
+| 5. Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | Most-confident-third accuracy 0.818; no threshold flags recorded | Most-confident-third accuracy 0.636; no threshold flags recorded | Most-confident-third accuracy 0.727; no threshold flags recorded | MISSED: no low-confidence flag/exclusion; exact thresholds not measured |
 
 ### Three-seed spread (Section 6)
 
@@ -277,11 +277,11 @@ whether inconsistent labeling contributed to this pattern.
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | At least 0.725 on every seed | MISSED | Accuracy was 0.667 for all three seeds. |
+| 2 | Per-label F1 and balance | Every label >= 0.500 F1; strongest–weakest gap <= 0.250 | MISSED | All seeds had analysis F1 0.800 and hot_take/reaction F1 0.000; the gap was 0.800. |
+| 3 | Class balance / majority guessing | Every label >= 5% of data; model does not guess only the majority label | MISSED | Data shares met the 5% floor, but the confusion matrix shows every test post was predicted as analysis. |
+| 4 | Labeler agreement | At least 75% agreement | MET | Agreement check matched 28 of 30 staff-labeled posts (93%). |
+| 5 | Confidence | >80%-confidence predictions >=75% correct; <60%-confidence predictions flagged/excluded | MISSED | The run did not flag or exclude low-confidence predictions. The saved summary measures confidence thirds, not the exact 80%/60% thresholds. |
 
 **Diagnoses**
 
@@ -294,6 +294,38 @@ whether inconsistent labeling contributed to this pattern.
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
 
+Criterion 4 is a single staff-labeling comparison, not a model score that
+changes by seed; 28/30 (93%) exceeds the 75% target.
+
+- **Criterion 1 — accuracy below target.** Accuracy was 0.667 in every seed,
+  below 0.725. The confusion matrix shows the model predicted only `analysis`,
+  which accounts for 22 of 33 test posts; the observed majority-only behavior
+  explains the 0.667 score. The three seeds show this was consistent across
+  these splits, but do not by themselves identify why the model collapsed.
+
+- **Criterion 2 — minority-label F1 and balance gap missed.** In every seed,
+  `hot_take` and `reaction` F1 were 0.000 while `analysis` F1 was 0.800, a
+  0.800-point gap. The matrix shows all 3 `hot_take` and all 8 `reaction` test
+  posts were predicted as `analysis`; the small `hot_take` test support (3)
+  makes its estimate especially limited. The staff-labeling exercise found
+  two rule-application inconsistencies, and Unit 5 feedback also flagged some
+  `analysis` examples as not matching the written fact-backed rule. These are
+  evidence that labeling consistency deserves review, not proof that it caused
+  the model's zero scores; the staff exercise used a separate set and taxonomy.
+
+- **Criterion 3 — the dataset balance floor was met, but the model guessed only
+  the majority label.** Dataset shares were 66.8% `analysis`, 8.6% `hot_take`,
+  and 24.5% `reaction`, so each exceeded 5%. The criterion was still missed
+  because the confusion matrix shows every prediction was `analysis`. This
+  directly establishes majority-label guessing, though the underlying cause
+  needs further investigation.
+  
+- **Criterion 5 — confidence requirement not demonstrated.** The results
+  summarize accuracy for the most- and least-confident thirds, rather than
+  accuracy among predictions above 80% confidence or behavior below 60%.
+  No low-confidence predictions were flagged or excluded. Thus the available
+  evidence does not establish the high-confidence target, and the low-
+  confidence safeguard was not met.
 
 
 ---
