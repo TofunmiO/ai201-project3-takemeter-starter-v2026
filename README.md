@@ -182,6 +182,12 @@ Finally, I wanted the classifier to separate fact-backed judgment from raw feeli
 
 **Pre-labelling disclosure:** I used AI as a pre-labeling aid for the remaining batch of posts, then reviewed and corrected every label manually before finalizing the dataset. The final CSV is the corrected version, not the raw model output.
 
+**Moment 3**
+
+- *What I asked for:* I asked Copilot to guide me through labeling the 30 staff-taxonomy posts one at a time and to put my answers into `my_staff_labels.csv`.
+- *What came back:* Copilot collected my labels and created the CSV with the exact post text and my `label` column; it did not choose the labels for me.
+- *What I changed:* I reviewed the two disagreements against the staff rules and confirmed that the staff labels were right. The comparison showed 28/30 agreement (93%); I recorded the result and my reasoning for both disagreements in the Agreement Report.
+
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
      Don't fill these in during unit 5.
@@ -417,41 +423,41 @@ opinion.
 
 ---
 
-## The Improvement
-
-**What I changed:**
-
-**Which diagnosis pointed at it:**
-
-### Run Log — After
-
-| Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
-|---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
-
-**Did it help, and how do I know:**
-
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
-
-
-
----
-
 ## What's Still Broken
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
-
+- **Criterion 1 — accuracy:** I would add more representative training examples
+  and test a training change such as class-balanced sampling, then rerun all
+  three seeds. I stopped after the one-row relabeling experiment because its
+  unchanged results did not justify adding another change to this controlled
+  before/after comparison.
+- **Criterion 2 — per-label F1 and balance:** I would audit `analysis` examples
+  against the fact-backed rule, add correctly labeled `hot_take` and `reaction`
+  examples, and evaluate each label's F1 again. I stopped after auditing and
+  changing one `analysis`/`hot_take` boundary example; the after run still had
+  zero F1 for both minority labels, so broader relabeling or training changes
+  remain untested.
+- **Criterion 3 — majority-label guessing:** The dataset-share floor passed,
+  but the model predicted only `analysis`; I would try class-balanced sampling
+  or loss weighting and check whether predictions cover all labels. I stopped
+  after the single relabeling experiment, which did not change the model's
+  predictions, rather than combining it with a second intervention.
+- **Criterion 5 — confidence:** I would update evaluation to measure accuracy
+  specifically above 80% confidence and flag or exclude predictions below 60%,
+  then report both threshold results. I stopped without implementing that
+  threshold-based behavior; the current saved results report confidence thirds,
+  which cannot establish this criterion.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
+I meant `analysis` to capture fact-backed claims, `hot_take` to capture
+unsupported confident judgments, and `reaction` to capture immediate emotion.
+The confusion matrix shows the model learned only to predict `analysis`: it got
+the 22 `analysis` posts right but mislabeled all 3 `hot_take` and all 8
+`reaction` posts as `analysis`.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
